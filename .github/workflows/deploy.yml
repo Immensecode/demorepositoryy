@@ -23,7 +23,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@203.170.77.228 -p 22 << 'EOF'
           cd /var/www/html
           git stash
-          git pull origin ramzan118-patch-02
+          git pull origin ramzan118-patch-2
           git stash pop
           
           # Set Node.js environment variable to allow legacy OpenSSL support
