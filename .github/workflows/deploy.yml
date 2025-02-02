@@ -3,7 +3,7 @@ name: Deploy to Remote Server
 on:
   push:
     branches:
-        - ramzan118-patch-1
+        - ramzan118-patch-02
 
 jobs:
   deploy:
@@ -23,7 +23,7 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@203.170.77.228 -p 22 << 'EOF'
           cd /var/www/html
           git stash
-          git pull origin ramzan118-patch-1
+          git pull origin ramzan118-patch-02
           git stash pop
           
           # Set Node.js environment variable to allow legacy OpenSSL support
@@ -31,7 +31,7 @@ jobs:
           
           npm install --force
           npm run build
-          rm -rf /var/www/html/textutility/*
-          cp -R /var/www/html/build/* /var/www/html/textutility/
+          rm -rf /var/www/html/test/*
+          cp -R /var/www/html/build/* /var/www/html/testrepo/
           sudo systemctl restart nginx
         EOF
